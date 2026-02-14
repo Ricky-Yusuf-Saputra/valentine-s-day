@@ -1,0 +1,269 @@
+```html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Day</title>
+    <style>
+        /* Reset dan gaya umum */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            overflow: hidden;
+            background: linear-gradient(135deg, #ff69b4, #ffb6c1);
+            transition: background 0.5s ease;
+        }
+        .screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Tampilan 1: Prank no internet */
+        #screen1 {
+            background: white;
+        }
+        .error-icon {
+            font-size: 100px;
+            color: #ff69b4;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        .error-text {
+            font-size: 28px;
+            color: #333;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .error-suggestion {
+            font-size: 16px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .next-btn {
+            padding: 10px 20px;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s;
+        }
+        .next-btn:hover {
+            background: #ff1493;
+        }
+
+        /* Tampilan 2: Surat Valentine */
+        #screen2 {
+            background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+        }
+        .letter {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            animation: slideIn 1s ease-out;
+            text-align: center;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .letter-text {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .question {
+            font-size: 28px;
+            color: #ff0080;
+            margin: 20px 0;
+        }
+        .btn-container {
+            display: flex;
+            gap: 20px;
+        }
+        .yes-btn {
+            padding: 10px 20px;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .yes-btn:hover {
+            background: #ff1493;
+        }
+        .no-btn {
+            padding: 10px 20px;
+            background: #ff69b4;
+            color: #ffffff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            position: relative;
+            transition: background 0.3s;
+        }
+        .no-btn:hover {
+            background: #ff1493;
+        }
+
+        /* Tampilan 3: Surat panjang */
+        #screen3 {
+            background: linear-gradient(135deg, #ff1493, #ffb6c1);
+        }
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 500px;
+            max-height: 70vh;
+            overflow-y: auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            animation: fadeIn 1s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .card-text {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .heart {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 20px;
+            animation: float 3s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Tampilan 1 -->
+    <div id="screen1" class="screen">
+        <div class="error-icon">💔</div>
+        <div class="error-text">sepertinya anda sedang offline</div>
+        <div class="error-suggestion">
+            Coba:<br>
+            Periksa perasaan kamu<br>
+            Pastikan hatimu tidak offline<br>
+            Aktifkan mode salting
+        </div>
+        <button class="next-btn" onclick="showScreen(2)">Next</button>
+    </div>
+
+    <!-- Tampilan 2 -->
+    <div id="screen2" class="screen hidden">
+        <div class="letter">
+            <div class="letter-text">
+                haiii novita pramudiawatiku sayanggg, hari ini adalah hari valentine yang spesialll. aku ingin mengatakan bahwa kamu adalah orang paling spesial dalam hidupku, membuat setiap hariku terasa bahagia dan penuh dengan warna warni. kamu adalah orang yang selalu membuatku tersenyum, bahkan di saat saat sulitku. terimakasiii karena udah jadi bagian dari hidupku. jangan berubah yaaaa. aku akan selalu mencintaimu lebih dari kata kata yang bisa ungkapkan.
+            </div>
+            <div class="question">ehhh apaniii, apakah kamu salting sayangggg?</div>
+            <div class="btn-container">
+                <button class="yes-btn" onclick="showScreen(3)">iyaaa nihh aku saltingg brutall</button>
+                <button class="no-btn" id="noBtn" onclick="moveNoBtn()">enggaa</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tampilan 3 -->
+    <div id="screen3" class="screen hidden">
+        <div class="hearts" id="hearts"></div>
+        <div class="card">
+            <div class="card-text">
+                kepada novitaku yang tercinta,<br><br>
+                pada hari valentine ini, aku ingin mengungkapkan betapa dalamnya perasaanku padamu, aku bener bener udah mencintai kamu sepenuhnya, aku menaruh semuanya padamu, masa depanku, cita citaku, impianku, kebahaiaanku, duniaku, semuanya ada di kamu. kamu adalah impian ku dari kecil yang menjadi kenyataan, seseorang perempuan cantikk yang membuat duniaku berubah genre romantis dengan tokoh utamanya kita. setiap detik bersamamu terasa sangat cepat, namun itu adalah anugerah, dan setiap senyumanmu adalah yang membuat hari hariku terasa lebih bersemangat.<br><br>
+                dalam setiap detik, menit, jam, hari, minggu, bulan, tahun, selamanya... aku akan selalu memikirkan kamu, jantungku berdegup kencang, dan sering senyum senyum sendiri. setiap kali disampingmu aku merasa sangat nyaman sangat aman bahkan aku ngerasa aku bisa kembali menjadi anak kecil yang sangat disayang dan dimajain oleh kamu. kamu adalah cewekku, cantikku, nduttku, kekasihku, jiwa ragaku, separuh nafasku, seorang istri yang selalu aku cari cari.<br><br>
+                terimakasih karena telah menerimaku apa adanya, karena telah mendukungku dalam setiap langkahku. kamu adalah kekuatan di balik keberanianku, inspirasi di balik kreativitasku, penyemangat di balik semangatku. aku berjanji sayang, aku akan selalu ada untukmu, melalui suka dan duka, melalui perjalanan yang panjang ini.<br><br>
+                aku mencintaimu dengan sepenuh hatiku, lebih dari bintang yang ada di langit, lebih dari pasir yang ada di pantai. kamu adalah segalanya bagiku. selamat hari valentine, hari penuh kasih sayang untukmu sayanggg. semoga cinta kita abadi selamanyaaa.<br><br>
+                dengan cinta yang tak terbatas,<br>
+                - ricky
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk menampilkan layar tertentu
+        function showScreen(screenNumber) {
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(screen => screen.classList.add('hidden'));
+            document.getElementById('screen' + screenNumber).classList.remove('hidden');
+        }
+
+        // Fungsi untuk memindahkan tombol "Tidak" secara acak
+        function moveNoBtn() {
+            const btn = document.getElementById('noBtn');
+            const maxX = window.innerWidth - btn.offsetWidth;
+            const maxY = window.innerHeight - btn.offsetHeight;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            btn.style.position = 'absolute';
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+        }
+
+        // Animasi hati jatuh di tampilan 3
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 3 + 's';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Jalankan animasi hati saat tampilan 3 muncul
+        document.getElementById('screen3').addEventListener('transitionend', function() {
+            if (!this.classList.contains('hidden')) {
+                createHearts();
+            }
+        });
+    </script>
+</body>
+</html>
+```
